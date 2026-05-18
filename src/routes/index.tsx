@@ -26,37 +26,48 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col h-full bg-[#f2f2f2]">
-      <TopBar />
+    <div className="flex flex-col h-full">
       <div className="flex flex-1 min-h-0">
         <Sidebar
           playlists={MOCK_PLAYLISTS}
           activePlaylistId={activePlaylistId}
-          currentTrack={currentTrack}
-          isLiked={isLiked}
           onSelectPlaylist={setActivePlaylistId}
-          onToggleLike={() => setIsLiked((v) => !v)}
         />
 
-        {/* Soft shadow divider instead of a border */}
-        <div className="w-px bg-gradient-to-b from-transparent via-black/8 to-transparent shrink-0" />
+        <div
+          className="w-px shrink-0"
+          style={{ background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.07) 20%, rgba(0,0,0,0.07) 80%, transparent)' }}
+        />
 
-        <main className="flex-1 overflow-y-auto bg-[#f6f6f6]">
-          <PlaylistView
-            playlist={activePlaylist}
-            currentTrackId={currentTrack.id}
-            onTrackSelect={handleTrackSelect}
+        <main className="flex-1 flex flex-col min-h-0 min-w-0">
+          <TopBar />
+
+          <div
+            className="h-px shrink-0 mx-6"
+            style={{ background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.06) 20%, rgba(0,0,0,0.06) 80%, transparent)' }}
           />
+
+          <div className="flex-1 overflow-y-auto">
+            <PlaylistView
+              playlist={activePlaylist}
+              currentTrackId={currentTrack.id}
+              onTrackSelect={handleTrackSelect}
+            />
+          </div>
         </main>
       </div>
 
-      {/* Soft shadow divider above player */}
-      <div className="h-px bg-gradient-to-r from-transparent via-black/10 to-transparent shrink-0" />
+      <div
+        className="h-px shrink-0"
+        style={{ background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.08) 15%, rgba(0,0,0,0.08) 85%, transparent)' }}
+      />
 
       <PlayerBar
         track={currentTrack}
         isPlaying={isPlaying}
+        isLiked={isLiked}
         onTogglePlay={() => setIsPlaying((v) => !v)}
+        onToggleLike={() => setIsLiked((v) => !v)}
       />
     </div>
   )

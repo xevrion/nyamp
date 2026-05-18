@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ChevronUp } from 'lucide-react'
 import type { Playlist, Track } from '../../types/music'
 
 interface PlaylistViewProps {
@@ -11,42 +12,33 @@ export function PlaylistView({ playlist, currentTrackId, onTrackSelect }: Playli
   const [hoveredId, setHoveredId] = useState<string | null>(null)
 
   return (
-    <div className="flex-1 overflow-y-auto">
-      {/* Playlist header */}
-      <div className="flex items-end gap-8 px-8 pt-8 pb-8">
-        <div className="w-[190px] h-[190px] shrink-0 rounded-2xl bg-black/8 overflow-hidden shadow-md">
+    <div className="flex-1 overflow-y-auto pb-8">
+      <div className="flex items-end gap-8 px-8 pt-4 pb-10">
+        <div className="w-[180px] h-[180px] shrink-0 rounded-2xl bg-black/8 overflow-hidden shadow-2xl">
           {playlist.coverUrl && (
             <img src={playlist.coverUrl} alt={playlist.name} className="w-full h-full object-cover" />
           )}
         </div>
-        <div className="flex flex-col gap-1 pb-2">
-          <span className="text-[11px] font-semibold tracking-widest text-black/30 uppercase">
-            Playlist
-          </span>
-          <h1 className="text-[2.6rem] font-bold text-black tracking-tight leading-none mt-2">
+        <div className="flex flex-col justify-end pb-1">
+          <h1 className="text-5xl font-bold text-black tracking-tight leading-none mb-2">
             {playlist.name}
           </h1>
-          <p className="text-sm text-black/45 mt-2">
-            {playlist.collaborators.join(', ')}
-          </p>
+          <p className="text-sm text-black/40 font-medium">{playlist.collaborators.join(', ')}</p>
         </div>
       </div>
 
-      {/* Track table */}
-      <div className="px-8 pb-4">
-        {/* Table header — no border, just spacing + subtle text */}
-        <div className="grid grid-cols-[2fr_1.5fr_1.5fr_1.5fr_1fr] gap-4 px-3 pb-3">
-          {(['Title', 'Artist', 'Album', 'Added At', 'Duration'] as const).map((col) => (
-            <span key={col} className="text-[11px] font-semibold tracking-widest text-black/25 uppercase">
-              {col}
-            </span>
-          ))}
+      <div className="px-8">
+        <div className="grid grid-cols-12 text-[10px] font-bold text-black/30 uppercase tracking-widest pb-3 px-3">
+          <div className="col-span-5">Title</div>
+          <div className="col-span-2">Artist</div>
+          <div className="col-span-3">Album</div>
+          <div className="col-span-1 flex items-center gap-1">Added <ChevronUp size={10} /></div>
+          <div className="col-span-1 text-right">Duration</div>
         </div>
 
-        {/* Subtle divider — just a shadow line, no stroke */}
-        <div className="h-px bg-gradient-to-r from-transparent via-black/10 to-transparent mb-1" />
+        <div className="h-px mb-1" style={{ background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.07) 20%, rgba(0,0,0,0.07) 80%, transparent)' }} />
 
-        <div className="mt-1">
+        <div className="mt-1 space-y-0.5">
           {playlist.tracks.map((track) => {
             const isActive = track.id === currentTrackId
             const isHovered = track.id === hoveredId
@@ -58,23 +50,18 @@ export function PlaylistView({ playlist, currentTrackId, onTrackSelect }: Playli
                 onMouseLeave={() => setHoveredId(null)}
                 onDoubleClick={() => onTrackSelect(track)}
                 className={`
-                  grid grid-cols-[2fr_1.5fr_1.5fr_1.5fr_1fr] gap-4 px-3 py-2.5 rounded-xl
-                  cursor-default transition-all select-none
-                  ${isActive
-                    ? 'bg-black/6 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]'
-                    : isHovered
-                      ? 'bg-black/4'
-                      : ''
-                  }
+                  grid grid-cols-12 items-center py-3 px-3 rounded-xl
+                  cursor-default transition-colors select-none text-sm
+                  ${isActive ? 'bg-black/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]' : isHovered ? 'bg-black/[0.03]' : ''}
                 `}
               >
-                <span className={`text-sm truncate ${isActive ? 'text-black font-medium' : 'text-black/75'}`}>
+                <div className={`col-span-5 font-medium truncate pr-4 ${isActive ? 'text-black' : 'text-black/70'}`}>
                   {track.title}
-                </span>
-                <span className="text-sm text-black/45 truncate">{track.artist}</span>
-                <span className="text-sm text-black/45 truncate">{track.album}</span>
-                <span className="text-sm text-black/35 truncate">{track.addedAt}</span>
-                <span className="text-sm text-black/35 text-right">{track.duration}</span>
+                </div>
+                <div className="col-span-2 truncate text-black/40">{track.artist}</div>
+                <div className="col-span-3 truncate text-black/40">{track.album}</div>
+                <div className="col-span-1 text-black/35">{track.addedAt}</div>
+                <div className="col-span-1 text-right text-black/35">{track.duration}</div>
               </div>
             )
           })}
