@@ -1,7 +1,20 @@
-# Tauri + React + Typescript
+# NYAMP, Not Your Average Music Player
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+> *"not yo average music player, bitch"*
 
-## Recommended IDE Setup
+A Linux music player that doesn't suck. Built with Tauri + React + Typescript.
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+---
+
+## Team
+
+| Handle | GitHub |
+|--------|--------|
+| xevrion | [@xevrion](https://github.com/xevrion) |
+| Arman | [@kaihere14](https://github.com/kaihere14) |
+| Chish | [@chishxd](https://github.com/chishxd) |
+| Quantinium | [@quantinium3](https://github.com/quantinium3) |
+
+## License
+
+MIT
