@@ -1,50 +1,81 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
-import "./App.css";
+import { TopBar } from "./components/TopBar";
+import { PlayerBar } from "./components/player/PlayerBar";
+import { PlaylistView } from "./components/playlist/PlaylistView";
+import { Sidebar } from "./components/sidebar/Sidebar";
+import { MOCK_CURRENT_TRACK, MOCK_PLAYLISTS } from "./lib/mockData";
+import type { Track } from "./types/music";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+  const [activePlaylistId, setActivePlaylistId] = useState(MOCK_PLAYLISTS[0].id);
+  const [currentTrack, setCurrentTrack] = useState<Track>(MOCK_CURRENT_TRACK);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
+  const activePlaylist =
+    MOCK_PLAYLISTS.find((playlist) => playlist.id === activePlaylistId) ??
+    MOCK_PLAYLISTS[0];
+
+  const handleTrackSelect = (track: Track) => {
+    setCurrentTrack(track);
+    setIsPlaying(true);
+    setIsLiked(false);
+  };
 
   return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
-
-      <div className="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
+    <div className="flex h-full flex-col">
+      <div className="flex min-h-0 flex-1">
+        <Sidebar
+          playlists={MOCK_PLAYLISTS}
+          activePlaylistId={activePlaylistId}
+          onSelectPlaylist={setActivePlaylistId}
         />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
-    </main>
+
+        <div
+          className="w-px shrink-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, transparent, rgba(0,0,0,0.07) 20%, rgba(0,0,0,0.07) 80%, transparent)",
+          }}
+        />
+
+        <main className="flex min-h-0 min-w-0 flex-1 flex-col">
+          <TopBar />
+
+          <div
+            className="mx-6 h-px shrink-0"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(0,0,0,0.06) 20%, rgba(0,0,0,0.06) 80%, transparent)",
+            }}
+          />
+
+          <div className="flex-1 overflow-y-auto">
+            <PlaylistView
+              playlist={activePlaylist}
+              currentTrackId={currentTrack.id}
+              onTrackSelect={handleTrackSelect}
+            />
+          </div>
+        </main>
+      </div>
+
+      <div
+        className="h-px shrink-0"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, rgba(0,0,0,0.08) 15%, rgba(0,0,0,0.08) 85%, transparent)",
+        }}
+      />
+
+      <PlayerBar
+        track={currentTrack}
+        isPlaying={isPlaying}
+        isLiked={isLiked}
+        onTogglePlay={() => setIsPlaying((value) => !value)}
+        onToggleLike={() => setIsLiked((value) => !value)}
+      />
+    </div>
   );
 }
 
