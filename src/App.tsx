@@ -11,7 +11,7 @@ function App() {
   const [currentTrack, setCurrentTrack] = useState<Track>(MOCK_CURRENT_TRACK);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-
+  const [currentPage, setCurrentPage] = useState("home");
   const activePlaylist =
     MOCK_PLAYLISTS.find((playlist) => playlist.id === activePlaylistId) ??
     MOCK_PLAYLISTS[0];
@@ -27,8 +27,11 @@ function App() {
       <div className="flex min-h-0 flex-1">
         <Sidebar
           playlists={MOCK_PLAYLISTS}
+          currentTrack={currentTrack}
           activePlaylistId={activePlaylistId}
           onSelectPlaylist={setActivePlaylistId}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
         />
 
         <div

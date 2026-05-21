@@ -18,7 +18,7 @@ export function TopBar() {
             placeholder="Search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            className="w-[180px] rounded-full border-none bg-white/40 py-1.5 pr-9 pl-4 text-sm text-black placeholder:text-black/30 transition-[background-color] duration-200 focus:bg-white/60 focus:outline-none"
+            className="w-[180px] rounded-full border border-black/10 py-1.5 pr-9 pl-4 text-sm text-black placeholder:text-black/30 transition-[background-color] duration-200 focus:bg-white/60 focus:outline-none"
           />
           <Search
             size={13}
