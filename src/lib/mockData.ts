@@ -5,6 +5,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
     id: "1",
     name: "Chill Songs",
     collaborators: ["xevrion", "chishxd"],
+    coverUrl: "https://imgs.search.brave.com/rb6QTcHOPjBFH5o2e8rFd5oPOWVjvlnw_ssrLuFyuQg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2I3Lzll/LzRiL2I3OWU0YjJh/MDBhZTMwYmRmYmNk/ODc2ZmRiMTZkNWI2/LmpwZw",
     tracks: [
       {
         id: "1",
@@ -13,6 +14,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "After Hours",
         addedAt: "3 days ago",
         duration: "3:20",
+        coverUrl: "https://imgs.search.brave.com/50qdfEooh_HgzQR-zVMQlvpZsv1wUB7AffSfiv1naUQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnJl/ZGQuaXQvZXJ5djJu/bGhtZGc5MS5qcGc",
       },
       {
         id: "2",
@@ -21,6 +23,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Future Nostalgia",
         addedAt: "5 days ago",
         duration: "3:23",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "3",
@@ -29,6 +32,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "F*CK LOVE 3",
         addedAt: "1 week ago",
         duration: "2:21",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "4",
@@ -37,6 +41,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Justice",
         addedAt: "1 week ago",
         duration: "3:18",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "5",
@@ -45,6 +50,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "SOUR",
         addedAt: "2 weeks ago",
         duration: "2:58",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "6",
@@ -53,6 +59,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "MONTERO",
         addedAt: "2 weeks ago",
         duration: "2:18",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "7",
@@ -61,6 +68,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "SOUR",
         addedAt: "3 weeks ago",
         duration: "4:02",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "8",
@@ -69,6 +77,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "After Hours",
         addedAt: "3 weeks ago",
         duration: "3:36",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "9",
@@ -77,6 +86,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "El Dorado",
         addedAt: "1 month ago",
         duration: "2:21",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "10",
@@ -85,6 +95,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Fine Line",
         addedAt: "1 month ago",
         duration: "2:54",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "11",
@@ -93,6 +104,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Positions",
         addedAt: "1 month ago",
         duration: "2:52",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "12",
@@ -101,6 +113,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Happier Than Ever",
         addedAt: "2 months ago",
         duration: "2:54",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "13",
@@ -109,6 +122,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Dreamland",
         addedAt: "2 months ago",
         duration: "3:58",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "14",
@@ -117,6 +131,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Harry's House",
         addedAt: "2 months ago",
         duration: "2:37",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "15",
@@ -125,6 +140,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Gemini Rights",
         addedAt: "3 months ago",
         duration: "3:52",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "16",
@@ -133,6 +149,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Special",
         addedAt: "3 months ago",
         duration: "3:13",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "17",
@@ -141,6 +158,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Hounds of Love",
         addedAt: "3 months ago",
         duration: "4:58",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "18",
@@ -149,6 +167,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Midnights",
         addedAt: "4 months ago",
         duration: "3:20",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "19",
@@ -157,6 +176,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "My 21st Century Blues",
         addedAt: "4 months ago",
         duration: "3:28",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "20",
@@ -165,6 +185,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Endless Summer Vacation",
         addedAt: "5 months ago",
         duration: "3:20",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "21",
@@ -173,6 +194,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Gloria",
         addedAt: "5 months ago",
         duration: "2:37",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "22",
@@ -181,6 +203,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Heroes & Villains",
         addedAt: "5 months ago",
         duration: "3:22",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
     ],
   },
@@ -188,6 +211,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
     id: "2",
     name: "Late Night Drive",
     collaborators: ["xevrion"],
+    coverUrl: "https://imgs.search.brave.com/sZN1oHQ0mAxRp9Xwi1g7q0vyBWPDocLlx9PioN5Cqc8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ZW1w/bGF0ZS5jYW52YS5j/b20vRUFFZGUwMWkw/T0EvMS8wLzE2MDB3/LUs0a3p5MjJJTDRB/LmpwZw",
     tracks: [
       {
         id: "23",
@@ -196,6 +220,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Midnights",
         addedAt: "1 day ago",
         duration: "3:03",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "24",
@@ -204,6 +229,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Lover",
         addedAt: "2 days ago",
         duration: "2:58",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "25",
@@ -212,6 +238,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Astroworld",
         addedAt: "4 days ago",
         duration: "3:42",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "26",
@@ -220,6 +247,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Fantasy",
         addedAt: "1 week ago",
         duration: "3:15",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "27",
@@ -228,6 +256,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "After Dark",
         addedAt: "1 week ago",
         duration: "4:09",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "28",
@@ -236,6 +265,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: '"Awaken, My Love!"',
         addedAt: "2 weeks ago",
         duration: "5:27",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "29",
@@ -244,6 +274,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Blonde",
         addedAt: "2 weeks ago",
         duration: "5:07",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "30",
@@ -252,6 +283,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Starboy",
         addedAt: "3 weeks ago",
         duration: "4:21",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "31",
@@ -260,6 +292,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Freudian",
         addedAt: "1 month ago",
         duration: "3:31",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "32",
@@ -268,6 +301,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Blonde",
         addedAt: "1 month ago",
         duration: "4:09",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
     ],
   },
@@ -275,6 +309,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
     id: "3",
     name: "Workout Mix",
     collaborators: ["xevrion", "chishxd", "nyamp"],
+    coverUrl: "https://imgs.search.brave.com/sZN1oHQ0mAxRp9Xwi1g7q0vyBWPDocLlx9PioN5Cqc8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ZW1w/bGF0ZS5jYW52YS5j/b20vRUFFZGUwMWkw/T0EvMS8wLzE2MDB3/LUs0a3p5MjJJTDRB/LmpwZw",
     tracks: [
       {
         id: "33",
@@ -283,6 +318,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "DAMN.",
         addedAt: "4 days ago",
         duration: "2:57",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "34",
@@ -291,6 +327,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "ASTROWORLD",
         addedAt: "1 week ago",
         duration: "5:13",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "35",
@@ -299,6 +336,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "My Beautiful Dark Twisted Fantasy",
         addedAt: "1 week ago",
         duration: "4:52",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "36",
@@ -307,7 +345,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Scorpion",
         addedAt: "2 weeks ago",
         duration: "3:18",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "37",
         title: "All The Stars",
@@ -315,7 +354,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Black Panther",
         addedAt: "2 weeks ago",
         duration: "3:52",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "38",
         title: "HIGHEST IN THE ROOM",
@@ -323,7 +363,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "JACKBOYS",
         addedAt: "3 weeks ago",
         duration: "2:58",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "39",
         title: "Lucid Dreams",
@@ -331,7 +372,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Goodbye & Good Riddance",
         addedAt: "1 month ago",
         duration: "3:59",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "40",
         title: "Rockstar",
@@ -339,14 +381,16 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Beerbongs & Bentleys",
         addedAt: "1 month ago",
         duration: "3:39",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
     ],
   },
   {
     id: "4",
     name: "Indie Mornings",
     collaborators: ["xevrion", "chishxd"],
-    tracks: [
+    coverUrl: "https://imgs.search.brave.com/sZN1oHQ0mAxRp9Xwi1g7q0vyBWPDocLlx9PioN5Cqc8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ZW1w/bGF0ZS5jYW52YS5j/b20vRUFFZGUwMWkw/T0EvMS8wLzE2MDB3/LUs0a3p5MjJJTDRB/LmpwZw",
+      tracks: [
       {
         id: "41",
         title: "Electric Feel",
@@ -354,7 +398,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Oracular Spectacular",
         addedAt: "2 days ago",
         duration: "3:49",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "42",
         title: "Do I Wanna Know?",
@@ -362,7 +407,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "AM",
         addedAt: "5 days ago",
         duration: "4:32",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "43",
         title: "R U Mine?",
@@ -370,7 +416,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "AM",
         addedAt: "1 week ago",
         duration: "3:21",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "44",
         title: "Fluorescent Adolescent",
@@ -378,7 +425,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Suck It and See",
         addedAt: "2 weeks ago",
         duration: "2:57",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "45",
         title: "Take Me Out",
@@ -386,7 +434,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Franz Ferdinand",
         addedAt: "3 weeks ago",
         duration: "3:57",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "46",
         title: "Mr. Brightside",
@@ -394,7 +443,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Hot Fuss",
         addedAt: "1 month ago",
         duration: "3:42",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "47",
         title: "Reptilia",
@@ -402,7 +452,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Room on Fire",
         addedAt: "1 month ago",
         duration: "3:36",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "48",
         title: "Last Nite",
@@ -410,13 +461,15 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Is This It",
         addedAt: "2 months ago",
         duration: "3:13",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
     ],
   },
   {
     id: "5",
     name: "Lo-fi Study",
     collaborators: ["xevrion"],
+    coverUrl: "https://imgs.search.brave.com/sZN1oHQ0mAxRp9Xwi1g7q0vyBWPDocLlx9PioN5Cqc8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ZW1w/bGF0ZS5jYW52YS5j/b20vRUFFZGUwMWkw/T0EvMS8wLzE2MDB3/LUs0a3p5MjJJTDRB/LmpwZw",
     tracks: [
       {
         id: "49",
@@ -425,7 +478,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Snowfall",
         addedAt: "1 day ago",
         duration: "2:06",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "50",
         title: "Clair de Lune",
@@ -433,7 +487,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Suite bergamasque",
         addedAt: "3 days ago",
         duration: "4:52",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "51",
         title: "Sleepy Fish",
@@ -441,6 +496,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Deep Sea",
         addedAt: "1 week ago",
         duration: "3:12",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "52",
@@ -449,6 +505,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Soft Rains",
         addedAt: "2 weeks ago",
         duration: "2:54",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "53",
@@ -457,13 +514,15 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Pastel",
         addedAt: "3 weeks ago",
         duration: "3:08",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
     ],
   },
   {
     id: "6",
     name: "2000s Throwback",
     collaborators: ["xevrion", "nyamp"],
+    coverUrl: "https://imgs.search.brave.com/sZN1oHQ0mAxRp9Xwi1g7q0vyBWPDocLlx9PioN5Cqc8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ZW1w/bGF0ZS5jYW52YS5j/b20vRUFFZGUwMWkw/T0EvMS8wLzE2MDB3/LUs0a3p5MjJJTDRB/LmpwZw",
     tracks: [
       {
         id: "54",
@@ -472,7 +531,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Meteora",
         addedAt: "2 days ago",
         duration: "3:05",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "55",
         title: "In The End",
@@ -480,7 +540,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Hybrid Theory",
         addedAt: "4 days ago",
         duration: "3:36",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "56",
         title: "Boulevard of Broken Dreams",
@@ -488,7 +549,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "American Idiot",
         addedAt: "1 week ago",
         duration: "4:20",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "57",
         title: "Welcome to the Black Parade",
@@ -496,7 +558,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "The Black Parade",
         addedAt: "2 weeks ago",
         duration: "5:11",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "58",
         title: "Sugar We're Goin Down",
@@ -504,7 +567,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "From Under the Cork Tree",
         addedAt: "3 weeks ago",
         duration: "3:49",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "59",
         title: "Dance Dance",
@@ -512,7 +576,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "From Under the Cork Tree",
         addedAt: "1 month ago",
         duration: "3:04",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "60",
         title: "Misery Business",
@@ -520,6 +585,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Riot!",
         addedAt: "1 month ago",
         duration: "3:31",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
     ],
   },
@@ -527,6 +593,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
     id: "7",
     name: "Soul & R&B",
     collaborators: ["xevrion", "chishxd"],
+    coverUrl: "https://imgs.search.brave.com/sZN1oHQ0mAxRp9Xwi1g7q0vyBWPDocLlx9PioN5Cqc8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ZW1w/bGF0ZS5jYW52YS5j/b20vRUFFZGUwMWkw/T0EvMS8wLzE2MDB3/LUs0a3p5MjJJTDRB/LmpwZw",
     tracks: [
       {
         id: "61",
@@ -535,6 +602,7 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Watch the Throne",
         addedAt: "1 day ago",
         duration: "4:32",
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
       },
       {
         id: "62",
@@ -543,7 +611,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "channel ORANGE",
         addedAt: "3 days ago",
         duration: "9:52",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "63",
         title: "Superstar",
@@ -551,7 +620,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "The Miseducation",
         addedAt: "1 week ago",
         duration: "4:05",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "64",
         title: "Golden",
@@ -559,7 +629,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Who Is Jill Scott?",
         addedAt: "2 weeks ago",
         duration: "4:38",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
       {
         id: "65",
         title: "No Ordinary Love",
@@ -567,7 +638,8 @@ export const MOCK_PLAYLISTS: Playlist[] = [
         album: "Love Deluxe",
         addedAt: "1 month ago",
         duration: "4:44",
-      },
+        coverUrl: "https://trendybeatz.com/images/Justin-Bieber-Ft-Burna-Boy-Loved-By-You-Artwork.jpg",
+        },
     ],
   },
 ];
