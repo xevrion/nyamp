@@ -61,7 +61,7 @@ export function PlayerBar({
 
   return (
     <div className="glass-player shrink-0">
-      <div className="progress-wrap relative h-[3px] w-full cursor-pointer bg-black/6">
+      <div className="progress-wrap relative h-[3px] w-[98%] cursor-pointer bg-black/6 mx-auto rounded-2xl">
         <input
           type="range"
           min={0}
@@ -81,7 +81,7 @@ export function PlayerBar({
       </div>
 
       <div className="flex h-[72px] items-center gap-4 px-6">
-        <div className="flex w-[260px] shrink-0 items-center gap-3">
+        {/* <div className="flex w-[260px] shrink-0 items-center gap-3">
           <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl bg-black/8 shadow-sm">
             {track?.coverUrl && (
               <img
@@ -111,7 +111,8 @@ export function PlayerBar({
           >
             <Heart size={14} fill={isLiked ? "currentColor" : "none"} />
           </button>
-        </div>
+        </div> */}
+        <div className="w-[240px]"></div>
 
         <div className="flex flex-1 items-center justify-center gap-6">
           <ToggleBtn
