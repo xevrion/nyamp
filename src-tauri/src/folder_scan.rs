@@ -1,31 +1,86 @@
+//! Utilities for scanning a filesystem folder for audio tracks and extracting
+//! metadata suitable for serialization and consumption by the frontend.
+//!
+//! This module exposes `scan_folder()` which walks a directory tree, finds
+//! files with supported audio extensions, and uses `lofty` to parse tags and
+//! properties. Corrupted or unparseable files are skipped so a single bad file
+//! does not make the whole scan fail. The function returns an `Err` only when
+//! the provided root path does not exist or when low-level filesystem
+//! operations (e.g. reading file metadata) fail.
+//!
+//! Example usage:
+//!
+//! ```no_run
+//! let tracks = nyamp_lib::folder_scan::scan_folder("/home/user/Music").unwrap();
+//! println!("Found {} tracks", tracks.len());
+//! ```
+use base64::{engine::general_purpose::STANDARD, Engine};
 use std::{path::Path, time::SystemTime};
 
 use chrono::{DateTime, Utc};
 use lofty::{
     file::{AudioFile, TaggedFileExt},
+    picture::PictureType,
     read_from_path,
     tag::ItemKey,
 };
 use serde::Serialize;
 use walkdir::WalkDir;
 
+/// A serializable representation of a discovered audio track.
+///
+/// Fields are intentionally simple to match the frontend contract:
+/// - `id`: absolute path used as an identifier for the file.
+/// - `title`, `artist`, `album`: values taken from metadata tags, or
+///   sensible fallbacks when missing.
+/// - `addedAt`: RFC3339 timestamp of the file modification time.
+/// - `duration`: human-readable duration formatted `M:SS`.
+/// - `coverUrl`: optional data URI (e.g. `data:image/jpeg;base64,...`) containing
+///   embedded artwork when present; omitted when not available.
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Track {
+    /// File path used as the track id.
     pub id: String,
+    /// Track title (from tags or file stem fallback).
     pub title: String,
+    /// Track artist (from tags or `Unknown Artist`).
     pub artist: String,
+    /// Album title (from tags or `Unknown Album`).
     pub album: String,
+    /// ISO 8601 / RFC3339 timestamp (UTC) representing file modification time.
     pub added_at: String,
+    /// Duration string in `M:SS` format.
     pub duration: String,
+    /// Optional image data URI for embedded artwork.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cover_url: Option<String>,
 }
 
+/// Return true if the file extension indicates a supported audio format.
 fn is_audio_ext(ext: &str) -> bool {
     matches!(ext, "mp3" | "flac" | "m4a" | "wav" | "ogg" | "opus")
 }
 
+/// Scan the given directory recursively for audio files and extract metadata.
+///
+/// This function:
+/// - walks `path` recursively collecting files with known audio extensions,
+/// - attempts to parse each file with `lofty` (unparseable files are skipped),
+/// - extracts tags (`title`, `artist`, `album`), duration, and file
+///   modification time (serialized as RFC3339 in UTC), and embedded artwork
+///   (if present) which is returned as a `data:` URI (`data:<mime>;base64,<...>`).
+/// - returns `Ok(Vec<Track>)` containing all successfully parsed tracks, or
+///   `Err(String)` if the provided `path` does not exist or a filesystem error
+///   prevents reading metadata for an otherwise discoverable file.
+///
+/// Note: The function intentionally tolerates individual file parse failures
+/// so a single corrupted file will not make the entire scan fail.
+///
+/// # Parameters
+///
+/// - `path`: filesystem path to scan. Should be readable by the running
+///   process.
 pub fn scan_folder(path: &str) -> Result<Vec<Track>, String> {
     let mut out = Vec::new();
     let root = Path::new(path);
@@ -139,18 +194,14 @@ mod tests {
     }
 
     #[test]
-    fn scans_only_audio_files() {
-        let dir = Path::new("/home/chish/Music/");
-
-        // Nested folder
-        let nested = dir.join("nested");
-        fs::create_dir_all(&nested).unwrap();
-        fs::write(nested.join("song3.ogg"), b"dummy").unwrap();
+    fn scan_empty_dir_returns_empty() {
+        let dir = make_temp_dir();
 
         let result = scan_folder(dir.to_str().unwrap()).unwrap();
 
-        // Invalid audio blobs should be skipped instead of crashing the scan
-        assert_eq!(result.len(), 3);
+        assert!(result.is_empty());
+
+        fs::remove_dir_all(&dir).unwrap();
     }
 
     #[test]
@@ -171,11 +222,5 @@ mod tests {
     fn returns_err_for_missing_path() {
         let err = scan_folder("/definitely/not/a/real/path").unwrap_err();
         assert!(err.contains("Path does not exist"));
-    }
-
-    #[test]
-    fn print_scan_json() {
-        let result = scan_folder("/home/chish/Music").unwrap();
-        println!("{}", serde_json::to_string_pretty(&result).unwrap());
     }
 }
