@@ -7,7 +7,7 @@ fn greet(name: &str) -> String {
 }
 
 #[tauri::command]
-fn scan_folder_cmd(path: String) -> Result<Vec<folder_scan::ScannedTrack>, String> {
+fn scan_folder_cmd(path: String) -> Result<Vec<folder_scan::Track>, String> {
     folder_scan::scan_folder(&path)
 }
 
