@@ -10,6 +10,7 @@ use serde::Serialize;
 use walkdir::WalkDir;
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Track {
     pub id: String,
     pub title: String,
@@ -92,7 +93,17 @@ pub fn scan_folder(path: &str) -> Result<Vec<Track>, String> {
 
                 let path_str = p.to_string_lossy().to_string();
 
-                let cover_url = None;
+                // Get Cover Art from embedded metadata and format it into MIME encoding.
+                let cover_url = tag
+                    .and_then(|t| {
+                        t.get_picture_type(PictureType::CoverFront)
+                            .or_else(|| t.pictures().first())
+                    })
+                    .map(|pic| {
+                        let mime = pic.mime_type().map(|m| m.as_str()).unwrap_or("image/jpeg");
+
+                        format!("data:{};base64,{}", mime, STANDARD.encode(pic.data()))
+                    });
 
                 out.push(Track {
                     id: path_str.clone(),
