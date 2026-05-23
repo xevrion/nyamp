@@ -29,3 +29,17 @@ pub struct Track {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cover_url: Option<String>,
 }
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct FolderScanFailure {
+    pub path: String,
+    pub error: String,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ScanFoldersResponse {
+    pub tracks: Vec<Track>,
+    pub failures: Vec<FolderScanFailure>,
+}
