@@ -1,4 +1,7 @@
-mod folder_scan;
+use crate::{app::models, features::library::scanner};
+
+pub mod app;
+pub mod features;
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
@@ -7,8 +10,15 @@ fn greet(name: &str) -> String {
 }
 
 #[tauri::command]
-fn scan_folder_cmd(path: String) -> Result<Vec<folder_scan::Track>, String> {
-    folder_scan::scan_folder(&path)
+fn scan_folder_cmd(paths: Vec<String>) -> Result<Vec<models::Track>, String> {
+    let mut all_tracks = Vec::new();
+
+    for path in paths {
+        let mut tracks = scanner::scan_folder(&path)?;
+        all_tracks.append(&mut tracks);
+    }
+
+    Ok(all_tracks)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
