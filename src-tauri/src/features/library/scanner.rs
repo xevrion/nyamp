@@ -218,6 +218,23 @@ mod tests {
     }
 
     #[test]
+    fn scan_folders_reports_partial_failures() {
+        let dir = make_temp_dir();
+        let missing = "/definitely/not/a/real/path".to_string();
+
+        let res = crate::features::library::scanner::scan_folders(vec![
+            dir.to_str().unwrap().to_string(),
+            missing.clone(),
+        ]);
+
+        assert!(res.tracks.is_empty());
+        assert_eq!(res.failures.len(), 1);
+        assert_eq!(res.failures[0].path, missing);
+
+        fs::remove_dir_all(&dir).unwrap();
+    }
+
+    #[test]
     fn returns_err_for_missing_path() {
         let err = scan_folder("/definitely/not/a/real/path").unwrap_err();
         assert!(err.contains("Path does not exist"));
