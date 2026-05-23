@@ -1,14 +1,30 @@
+use crate::{app::models, features::library::scanner};
+
+pub mod app;
+pub mod features;
+
+/// Simple command used by the UI as a smoke test for the Tauri bridge.
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
 fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
+/// Tauri command that scans one or more music folders.
+///
+/// The command delegates to the library scanner and returns a partial-success
+/// response containing both discovered tracks and any folder-level failures.
+#[tauri::command]
+fn scan_folder_cmd(paths: Vec<String>) -> models::ScanFoldersResponse {
+    scanner::scan_folders(paths)
+}
+
+/// Build and run the Tauri application.
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![greet, scan_folder_cmd])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
