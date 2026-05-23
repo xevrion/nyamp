@@ -1,15 +1,9 @@
 use serde::Serialize;
 
-/// A serializable representation of a discovered audio track.
+/// Serializable track metadata shared with the frontend.
 ///
-/// Fields are intentionally simple to match the frontend contract:
-/// - `id`: absolute path used as an identifier for the file.
-/// - `title`, `artist`, `album`: values taken from metadata tags, or
-///   sensible fallbacks when missing.
-/// - `addedAt`: RFC3339 timestamp of the file modification time.
-/// - `duration`: human-readable duration formatted `M:SS`.
-/// - `coverUrl`: optional data URI (e.g. `data:image/jpeg;base64,...`) containing
-///   embedded artwork when present; omitted when not available.
+/// This type represents one audio file discovered during a folder scan.
+/// Field-level docs describe the exact meaning of each property.
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Track {
@@ -30,16 +24,29 @@ pub struct Track {
     pub cover_url: Option<String>,
 }
 
+/// A folder-level scan failure returned by the multi-folder scan command.
+///
+/// This is used to report which folder failed and why, while still returning
+/// tracks discovered in the remaining folders.
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct FolderScanFailure {
+    /// Folder path that failed to scan.
     pub path: String,
+    /// Human-readable error message for the failure.
     pub error: String,
 }
 
+/// Combined result from scanning multiple folders.
+///
+/// Successful tracks are returned in `tracks`. Any folder that could not be
+/// scanned is listed in `failures` so the caller can show a partial-success
+/// result instead of failing the whole operation.
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ScanFoldersResponse {
+    /// All tracks found across the provided folders, deduplicated by path.
     pub tracks: Vec<Track>,
+    /// Per-folder scan failures collected during the scan.
     pub failures: Vec<FolderScanFailure>,
 }

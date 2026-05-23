@@ -1,21 +1,11 @@
-//! Utilities for scanning a filesystem folder for audio tracks and extracting
-//! metadata suitable for serialization and consumption by the frontend.
+//! Library scanning logic.
 //!
-//! This module exposes `scan_folder()` which walks a directory tree, finds
-//! files with supported audio extensions, and uses `lofty` to parse tags and
-//! properties. Corrupted or unparseable files are skipped so a single bad file
-//! does not make the whole scan fail. The function returns an `Err` only when
-//! the provided root path does not exist or when low-level filesystem
-//! operations (e.g. reading file metadata) fail.
-//!
-//! Example usage:
-//!
-//! ```no_run
-//! let tracks = nyamp_lib::folder_scan::scan_folder("/home/user/Music").unwrap();
-//! println!("Found {} tracks", tracks.len());
-//! ```
+//! This module scans music folders, parses audio metadata with `lofty`, and
+//! returns serializable track data for the frontend. Single-folder scans can
+//! fail only when the root path is missing or unreadable; multi-folder scans
+//! keep going and report per-folder failures.
 use base64::{engine::general_purpose::STANDARD, Engine};
-use std::{collections::HashSet, path::Path, time::SystemTime};
+use std::{collections::HashSet, path::Path};
 
 use chrono::{DateTime, Utc};
 use lofty::{
@@ -27,36 +17,19 @@ use lofty::{
 
 use walkdir::WalkDir;
 
-use crate::{
-    app::models::{self, Track},
-    features::library::scanner,
-};
+use crate::app::models::{self, Track};
 
 /// Return true if the file extension indicates a supported audio format.
 fn is_audio_ext(ext: &str) -> bool {
     matches!(ext, "mp3" | "flac" | "m4a" | "wav" | "ogg" | "opus")
 }
 
-/// Scan the given directory recursively for audio files and extract metadata.
+/// Scan one folder recursively and return any tracks that could be parsed.
 ///
-/// This function:
-/// - walks `path` recursively collecting files with known audio extensions,
-/// - attempts to parse each file with `lofty` (unparseable files are skipped),
-/// - extracts tags (`title`, `artist`, `album`), duration, and file
-///   modification time (serialized as RFC3339 in UTC), and embedded artwork
-///   (if present) which is returned as a `data:` URI (`data:<mime>;base64,<...>`).
-/// - returns `Ok(Vec<Track>)` containing all successfully parsed tracks, or
-///   `Err(String)` if the provided `path` does not exist or a filesystem error
-///   prevents reading metadata for an otherwise discoverable file.
-///
-/// Note: The function intentionally tolerates individual file parse failures
-/// so a single corrupted file will not make the entire scan fail.
-///
-/// # Parameters
-///
-/// - `path`: filesystem path to scan. Should be readable by the running
-///   process.
-fn scan_folder(path: &str) -> Result<Vec<Track>, String> {
+/// Unsupported files and unreadable audio files are skipped. The function only
+/// returns `Err` when the folder itself is missing or a filesystem metadata
+/// read fails.
+pub fn scan_folder(path: &str) -> Result<Vec<Track>, String> {
     let mut out = Vec::new();
     let root = Path::new(path);
 
@@ -112,8 +85,13 @@ fn scan_folder(path: &str) -> Result<Vec<Track>, String> {
                 let duration_secs = tagged_file.properties().duration().as_secs();
                 let duration = format!("{}:{:02}", duration_secs / 60, duration_secs % 60);
 
-                let metadata = std::fs::metadata(p).map_err(|e| e.to_string())?; // Result<Metadata, Error> -> Metadata
-                let modified_time: SystemTime = metadata.modified().map_err(|e| e.to_string())?; // Result<SystemTime, Error> -> SystemTime
+                let Ok(metadata) = std::fs::metadata(p) else {
+                    continue;
+                };
+
+                let Ok(modified_time) = metadata.modified() else {
+                    continue;
+                };
 
                 // Convert SystemTime to DateTime<Utc>
                 let datetime: DateTime<Utc> = modified_time.into();
@@ -151,13 +129,17 @@ fn scan_folder(path: &str) -> Result<Vec<Track>, String> {
     Ok(out)
 }
 
+/// Scan multiple folders and combine the results into a single response.
+///
+/// Failed folders are reported in `failures`, while successful folders still
+/// contribute tracks to the final response.
 pub fn scan_folders(paths: Vec<String>) -> models::ScanFoldersResponse {
     let mut all_tracks = Vec::new();
     let mut failures = Vec::new();
     let mut seen = HashSet::new();
 
     for path in paths {
-        match scanner::scan_folder(&path) {
+        match scan_folder(&path) {
             Ok(tracks) => {
                 for track in tracks {
                     if seen.insert(track.id.clone()) {
