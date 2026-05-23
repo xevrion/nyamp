@@ -8,7 +8,7 @@ import type { Playlist, Track } from "../../types/music";
 interface SidebarProps {
   playlists: Playlist[];
   activePlaylistId: string;
-  currentTrack: Track;
+  currentTrack: Track | null;
   onSelectPlaylist: (id: string) => void;
   currentPage: string;
   setCurrentPage: (page: string) => void;
@@ -77,11 +77,21 @@ export function Sidebar({
         />
 
         <div className="absolute -bottom-5 left-0 right-0 h-fit w-full shrink-0 overflow-hidden">
-          <img src={currentTrack?.coverUrl ?? ""} alt={currentTrack.title} className="h-full w-full object-cover rounded-2xl" />
-          <div className="py-5 flex items-center justify-between">
+          {currentTrack?.coverUrl && (
+            <img
+              src={currentTrack.coverUrl}
+              alt={currentTrack.title}
+              className="h-full w-full rounded-2xl object-cover"
+            />
+          )}
+          <div className="flex items-center justify-between py-5">
             <div>
-              <p className="text-sm font-medium text-black">{currentTrack.title}</p>
-              <p className="text-sm font-medium text-black/40">{currentTrack.artist}</p>
+              <p className="text-sm font-medium text-black">
+                {currentTrack?.title ?? "Nothing playing"}
+              </p>
+              <p className="text-sm font-medium text-black/40">
+                {currentTrack?.artist ?? ""}
+              </p>
             </div>
             <div>
               <Heart size={16} />

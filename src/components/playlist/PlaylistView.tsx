@@ -5,12 +5,15 @@ import {
   type MouseEvent as ReactMouseEvent,
 } from "react";
 import { ChevronUp } from "lucide-react";
+import { formatAddedAt } from "../../lib/formatAddedAt";
 import type { Playlist, Track } from "../../types/music";
 
 interface PlaylistViewProps {
   playlist: Playlist;
   currentTrackId: string | null;
   onTrackSelect: (track: Track) => void;
+  loading?: boolean;
+  onAddMusicFolder?: () => void;
 }
 
 const FADE = "linear-gradient(to right, black calc(100% - 2rem), transparent 100%)";
@@ -21,6 +24,8 @@ export function PlaylistView({
   playlist,
   currentTrackId,
   onTrackSelect,
+  loading = false,
+  onAddMusicFolder,
 }: PlaylistViewProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [cols, setCols] = useState({
@@ -92,7 +97,9 @@ export function PlaylistView({
             {playlist.name}
           </h1>
           <p className="text-sm font-medium text-black/40">
-            {playlist.collaborators.join(", ")}
+            {playlist.collaborators.length > 0
+              ? playlist.collaborators.join(", ")
+              : `${playlist.tracks.length} tracks`}
           </p>
         </div>
       </div>
@@ -142,6 +149,26 @@ export function PlaylistView({
         />
 
         <div className="mt-1 space-y-0.5">
+          {loading && playlist.tracks.length === 0 && (
+            <p className="px-3 py-8 text-sm text-black/35">Scanning library…</p>
+          )}
+
+          {!loading && playlist.tracks.length === 0 && (
+            <div className="flex flex-col items-start gap-4 px-3 py-12">
+              <p className="text-sm text-black/40">
+                No tracks yet. Add a music folder to get started.
+              </p>
+              {onAddMusicFolder && (
+                <button
+                  onClick={onAddMusicFolder}
+                  className="rounded-full bg-black px-5 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-85"
+                >
+                  Add music folder
+                </button>
+              )}
+            </div>
+          )}
+
           {playlist.tracks.map((track) => {
             const isActive = track.id === currentTrackId;
             const isHovered = track.id === hoveredId;
@@ -181,7 +208,9 @@ export function PlaylistView({
                 >
                   <span className="block whitespace-nowrap">{track.album}</span>
                 </div>
-                <div className="truncate text-black/35">{track.addedAt}</div>
+                <div className="truncate text-black/35">
+                  {formatAddedAt(track.addedAt)}
+                </div>
                 <div className="text-right text-black/35">{track.duration}</div>
               </div>
             );

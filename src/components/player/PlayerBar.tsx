@@ -1,6 +1,5 @@
 import { useState, type ReactNode } from "react";
 import {
-  Heart,
   Pause,
   Play,
   Repeat,
@@ -50,9 +49,7 @@ function ToggleBtn({
 export function PlayerBar({
   track,
   isPlaying,
-  isLiked,
   onTogglePlay,
-  onToggleLike,
 }: PlayerBarProps) {
   const [isShuffle, setIsShuffle] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
