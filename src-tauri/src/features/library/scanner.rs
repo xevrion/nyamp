@@ -15,7 +15,7 @@
 //! println!("Found {} tracks", tracks.len());
 //! ```
 use base64::{engine::general_purpose::STANDARD, Engine};
-use std::{path::Path, time::SystemTime};
+use std::{collections::HashSet, path::Path, time::SystemTime};
 
 use chrono::{DateTime, Utc};
 use lofty::{
@@ -27,7 +27,10 @@ use lofty::{
 
 use walkdir::WalkDir;
 
-use crate::app::models::Track;
+use crate::{
+    app::models::{self, Track},
+    features::library::scanner,
+};
 
 /// Return true if the file extension indicates a supported audio format.
 fn is_audio_ext(ext: &str) -> bool {
@@ -53,7 +56,7 @@ fn is_audio_ext(ext: &str) -> bool {
 ///
 /// - `path`: filesystem path to scan. Should be readable by the running
 ///   process.
-pub fn scan_folder(path: &str) -> Result<Vec<Track>, String> {
+fn scan_folder(path: &str) -> Result<Vec<Track>, String> {
     let mut out = Vec::new();
     let root = Path::new(path);
 
@@ -146,6 +149,30 @@ pub fn scan_folder(path: &str) -> Result<Vec<Track>, String> {
     }
 
     Ok(out)
+}
+
+pub fn scan_folders(paths: Vec<String>) -> models::ScanFoldersResponse {
+    let mut all_tracks = Vec::new();
+    let mut failures = Vec::new();
+    let mut seen = HashSet::new();
+
+    for path in paths {
+        match scanner::scan_folder(&path) {
+            Ok(tracks) => {
+                for track in tracks {
+                    if seen.insert(track.id.clone()) {
+                        all_tracks.push(track);
+                    }
+                }
+            }
+            Err(error) => failures.push(models::FolderScanFailure { path, error }),
+        }
+    }
+
+    models::ScanFoldersResponse {
+        tracks: all_tracks,
+        failures,
+    }
 }
 
 #[cfg(test)]

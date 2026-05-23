@@ -1,5 +1,3 @@
-use std::collections::HashSet;
-
 use crate::{app::models, features::library::scanner};
 
 pub mod app;
@@ -13,27 +11,7 @@ fn greet(name: &str) -> String {
 
 #[tauri::command]
 fn scan_folder_cmd(paths: Vec<String>) -> models::ScanFoldersResponse {
-    let mut all_tracks = Vec::new();
-    let mut failures = Vec::new();
-    let mut seen = HashSet::new();
-
-    for path in paths {
-        match scanner::scan_folder(&path) {
-            Ok(tracks) => {
-                for track in tracks {
-                    if seen.insert(track.id.clone()) {
-                        all_tracks.push(track);
-                    }
-                }
-            }
-            Err(error) => failures.push(models::FolderScanFailure { path, error }),
-        }
-    }
-
-    models::ScanFoldersResponse {
-        tracks: all_tracks,
-        failures,
-    }
+    scanner::scan_folders(paths)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
