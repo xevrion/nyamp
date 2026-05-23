@@ -178,8 +178,8 @@ export function PlaylistView({
                 key={track.id}
                 onMouseEnter={() => setHoveredId(track.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                onDoubleClick={() => onTrackSelect(track)}
-                className={`cursor-default select-none rounded-xl px-3 py-3 text-sm transition-colors ${
+                onClick={() => onTrackSelect(track)}
+                className={`cursor-pointer select-none rounded-xl px-3 py-3 text-sm transition-colors ${
                   isActive
                     ? "bg-black/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]"
                     : isHovered

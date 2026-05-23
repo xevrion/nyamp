@@ -81,7 +81,7 @@ export function Sidebar({
             <img
               src={currentTrack.coverUrl}
               alt={currentTrack.title}
-              className="h-full w-full rounded-2xl object-cover"
+              className="max-h-60 w-60 rounded-2xl object-contain"
             />
           )}
           <div className="flex items-center justify-between py-5">
