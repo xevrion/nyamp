@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import {
   Pause,
   Play,
@@ -7,6 +7,7 @@ import {
   SkipBack,
   SkipForward,
   Volume2,
+  VolumeX,
 } from "lucide-react";
 import { formatSeconds, parseDuration } from "../../lib/formatDuration";
 import type { Track } from "../../types/music";
@@ -17,11 +18,17 @@ interface PlayerBarProps {
   currentTime: number;
   duration: number;
   volume: number;
+  isMuted: boolean;
+  isShuffle: boolean;
+  isRepeat: boolean;
   onTogglePlay: () => void;
   onSeek: (progress: number) => void;
   onSeekStart: () => void;
   onSeekEnd: () => void;
   onVolumeChange: (volume: number) => void;
+  onToggleMute: () => void;
+  onToggleShuffle: () => void;
+  onToggleRepeat: () => void;
   onSkipBack: () => void;
   onSkipForward: () => void;
 }
@@ -60,16 +67,20 @@ export function PlayerBar({
   currentTime,
   duration,
   volume,
+  isMuted,
+  isShuffle,
+  isRepeat,
   onTogglePlay,
   onSeek,
   onSeekStart,
   onSeekEnd,
   onVolumeChange,
+  onToggleMute,
+  onToggleShuffle,
+  onToggleRepeat,
   onSkipBack,
   onSkipForward,
 }: PlayerBarProps) {
-  const [isShuffle, setIsShuffle] = useState(false);
-  const [isRepeat, setIsRepeat] = useState(false);
 
   const totalDuration =
     duration > 0 ? duration : track ? parseDuration(track.duration) : 0;
@@ -106,10 +117,7 @@ export function PlayerBar({
         <div className="w-[240px]"></div>
 
         <div className="flex flex-1 items-center justify-center gap-6">
-          <ToggleBtn
-            active={isShuffle}
-            onClick={() => setIsShuffle((value) => !value)}
-          >
+          <ToggleBtn active={isShuffle} onClick={onToggleShuffle}>
             <Shuffle size={15} />
           </ToggleBtn>
           <button
@@ -141,10 +149,7 @@ export function PlayerBar({
           >
             <SkipForward size={19} strokeWidth={2} />
           </button>
-          <ToggleBtn
-            active={isRepeat}
-            onClick={() => setIsRepeat((value) => !value)}
-          >
+          <ToggleBtn active={isRepeat} onClick={onToggleRepeat}>
             <Repeat size={15} />
           </ToggleBtn>
         </div>
@@ -160,20 +165,25 @@ export function PlayerBar({
               : (track?.duration ?? "0:00")}
           </span>
           <div className="mx-1 h-3 w-px bg-border" />
-          <Volume2 size={14} className="shrink-0 text-fg-hint" />
+          <button
+            onClick={onToggleMute}
+            className="shrink-0 text-fg-hint transition-colors hover:text-fg"
+          >
+            {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+          </button>
           <div className="relative flex h-4 w-20 items-center">
             <input
               type="range"
               min={0}
               max={100}
-              value={volume}
+              value={isMuted ? 0 : volume}
               onChange={(event) => onVolumeChange(Number(event.target.value))}
               className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
             />
             <div className="h-[3px] w-full overflow-hidden rounded-full bg-border">
               <div
                 className="h-full rounded-full bg-progress-fill-strong"
-                style={{ width: `${volume}%` }}
+                style={{ width: `${isMuted ? 0 : volume}%` }}
               />
             </div>
           </div>
