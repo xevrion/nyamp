@@ -1,4 +1,39 @@
 @import "tailwindcss";
+@import "./styles/themes.css";
+
+@theme inline {
+  --color-fg: var(--nyamp-fg);
+  --color-fg-secondary: var(--nyamp-fg-secondary);
+  --color-fg-muted: var(--nyamp-fg-muted);
+  --color-fg-subtle: var(--nyamp-fg-subtle);
+  --color-fg-faint: var(--nyamp-fg-faint);
+  --color-fg-dim: var(--nyamp-fg-dim);
+  --color-fg-hint: var(--nyamp-fg-hint);
+  --color-border: var(--nyamp-border);
+  --color-border-subtle: var(--nyamp-border-subtle);
+  --color-surface-hover: var(--nyamp-surface-hover);
+  --color-surface-active: var(--nyamp-surface-active);
+  --color-surface-placeholder: var(--nyamp-surface-placeholder);
+  --color-surface-elevated: var(--nyamp-surface-elevated);
+  --color-surface-chip: var(--nyamp-surface-chip);
+  --color-surface-input: var(--nyamp-surface-input);
+  --color-accent: var(--nyamp-accent);
+  --color-on-accent: var(--nyamp-on-accent);
+  --color-progress-track: var(--nyamp-progress-track);
+  --color-progress-fill: var(--nyamp-progress-fill);
+  --color-progress-fill-strong: var(--nyamp-progress-fill-strong);
+  --color-nav-inactive: var(--nyamp-nav-inactive);
+  --color-nav-active: var(--nyamp-nav-active);
+  --color-error-bg: var(--nyamp-error-bg);
+  --color-error-border: var(--nyamp-error-border);
+  --color-error-fg: var(--nyamp-error-fg);
+  --color-warning-bg: var(--nyamp-warning-bg);
+  --color-warning-border: var(--nyamp-warning-border);
+  --color-warning-fg: var(--nyamp-warning-fg);
+  --color-info-bg: var(--nyamp-info-bg);
+  --color-info-border: var(--nyamp-info-border);
+  --color-info-fg: var(--nyamp-info-fg);
+}
 
 * {
   box-sizing: border-box;
@@ -15,7 +50,11 @@ body {
     -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #fdfbf7 0%, #f0ede6 100%);
+  background: linear-gradient(
+    135deg,
+    var(--nyamp-page-from) 0%,
+    var(--nyamp-page-to) 100%
+  );
 }
 
 #root {
@@ -27,15 +66,67 @@ body {
 }
 
 .glass-sidebar {
-  background: rgba(255, 255, 255, 0.35);
+  background: var(--nyamp-glass-sidebar);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
 }
 
 .glass-player {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--nyamp-glass-player);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+}
+
+.nyamp-divider-v {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--nyamp-divider) 20%,
+    var(--nyamp-divider) 80%,
+    transparent
+  );
+}
+
+.nyamp-divider-h {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--nyamp-divider) 20%,
+    var(--nyamp-divider) 80%,
+    transparent
+  );
+}
+
+.nyamp-divider-player {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--nyamp-divider) 15%,
+    var(--nyamp-divider) 85%,
+    transparent
+  );
+}
+
+.nyamp-sidebar-fade {
+  background: linear-gradient(to bottom, transparent, var(--nyamp-sidebar-fade));
+}
+
+.nyamp-text-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    var(--nyamp-fg) calc(100% - 2rem),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    var(--nyamp-fg) calc(100% - 2rem),
+    transparent 100%
+  );
+}
+
+.nyamp-row-active {
+  background-color: var(--nyamp-surface-active);
+  box-shadow: inset 0 1px 0 var(--nyamp-row-inset-highlight);
 }
 
 ::-webkit-scrollbar {
@@ -47,12 +138,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--nyamp-scrollbar);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.18);
+  background: var(--nyamp-scrollbar-hover);
 }
 
 input[type="range"] {

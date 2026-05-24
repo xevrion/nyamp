@@ -1,0 +1,332 @@
+:root,
+[data-theme="light"] {
+  /* Page */
+  --nyamp-page-from: #fdfbf7;
+  --nyamp-page-to: #f0ede6;
+
+  /* Glass panels */
+  --nyamp-glass-sidebar: #ffffff59;
+  --nyamp-glass-player: #ffffff33;
+
+  /* Text */
+  --nyamp-fg: #000000;
+  --nyamp-fg-secondary: #999999;
+  --nyamp-fg-muted: #b3b3b3;
+  --nyamp-fg-subtle: #808080;
+  --nyamp-fg-faint: #cccccc;
+  --nyamp-fg-dim: #4d4d4d;
+  --nyamp-fg-hint: #8c8c8c;
+
+  /* Borders & dividers */
+  --nyamp-border: #e6e6e6;
+  --nyamp-border-subtle: #ebebeb;
+  --nyamp-divider: #eceae4;
+
+  /* Surfaces */
+  --nyamp-surface-hover: #f7f7f7;
+  --nyamp-surface-active: #f2f2f2;
+  --nyamp-surface-placeholder: #ebebeb;
+  --nyamp-surface-elevated: #ffffff;
+  --nyamp-surface-chip: #ffffff99;
+  --nyamp-surface-input: #f0f0f0;
+
+  /* Accent (CTA, progress, toggles) */
+  --nyamp-accent: #000000;
+  --nyamp-on-accent: #ffffff;
+  --nyamp-progress-track: #f0f0f0;
+  --nyamp-progress-fill: #666666;
+  --nyamp-progress-fill-strong: #808080;
+
+  /* Sidebar nav */
+  --nyamp-nav-inactive: #a3a3a3;
+  --nyamp-nav-active: #262626;
+
+  /* Overlays & highlights */
+  --nyamp-row-inset-highlight: #ffffffb3;
+  --nyamp-sidebar-fade: #fdfbf78c;
+
+  /* Scrollbar */
+  --nyamp-scrollbar: #1a1a1a1a;
+  --nyamp-scrollbar-hover: #1a1a1a2e;
+
+  /* Feedback banners */
+  --nyamp-error-bg: #fef2f2;
+  --nyamp-error-border: #fecaca;
+  --nyamp-error-fg: #b91c1c;
+  --nyamp-warning-bg: #fffbeb;
+  --nyamp-warning-border: #fde68a;
+  --nyamp-warning-fg: #92400e;
+  --nyamp-info-bg: #faf9f7;
+  --nyamp-info-border: #ebebeb;
+  --nyamp-info-fg: #808080;
+}
+
+[data-theme="dark"] {
+  /* Page */
+  --nyamp-page-from: #121110;
+  --nyamp-page-to: #1c1917;
+
+  /* Glass panels */
+  --nyamp-glass-sidebar: #ffffff14;
+  --nyamp-glass-player: #ffffff0d;
+
+  /* Text */
+  --nyamp-fg: #fafaf9;
+  --nyamp-fg-secondary: #78716c;
+  --nyamp-fg-muted: #57534e;
+  --nyamp-fg-subtle: #a8a29e;
+  --nyamp-fg-faint: #44403c;
+  --nyamp-fg-dim: #d6d3d1;
+  --nyamp-fg-hint: #a8a29e;
+
+  /* Borders & dividers */
+  --nyamp-border: #292524;
+  --nyamp-border-subtle: #231f1d;
+  --nyamp-divider: #2a2725;
+
+  /* Surfaces */
+  --nyamp-surface-hover: #1c1917;
+  --nyamp-surface-active: #231f1d;
+  --nyamp-surface-placeholder: #292524;
+  --nyamp-surface-elevated: #292524;
+  --nyamp-surface-chip: #29252499;
+  --nyamp-surface-input: #231f1d;
+
+  /* Accent */
+  --nyamp-accent: #fafaf9;
+  --nyamp-on-accent: #121110;
+  --nyamp-progress-track: #231f1d;
+  --nyamp-progress-fill: #a8a29e;
+  --nyamp-progress-fill-strong: #d6d3d1;
+
+  /* Sidebar nav */
+  --nyamp-nav-inactive: #78716c;
+  --nyamp-nav-active: #e7e5e4;
+
+  /* Overlays & highlights */
+  --nyamp-row-inset-highlight: #ffffff1a;
+  --nyamp-sidebar-fade: #1211108c;
+
+  /* Scrollbar */
+  --nyamp-scrollbar: #ffffff1a;
+  --nyamp-scrollbar-hover: #ffffff2e;
+
+  /* Feedback banners */
+  --nyamp-error-bg: #450a0a;
+  --nyamp-error-border: #7f1d1d;
+  --nyamp-error-fg: #fca5a5;
+  --nyamp-warning-bg: #451a03;
+  --nyamp-warning-border: #78350f;
+  --nyamp-warning-fg: #fcd34d;
+  --nyamp-info-bg: #1c1917;
+  --nyamp-info-border: #292524;
+  --nyamp-info-fg: #a8a29e;
+}
+
+[data-theme="sakura"] {
+  --nyamp-page-from: #fff5f7;
+  --nyamp-page-to: #fce8ed;
+
+  --nyamp-glass-sidebar: #f8c8d480;   /* deeper rose tint, reads as its own layer */
+  --nyamp-glass-player: #f8c8d440;
+
+  --nyamp-fg: #2d1018;
+  --nyamp-fg-secondary: #9e6070;
+  --nyamp-fg-muted: #c4909e;
+  --nyamp-fg-subtle: #a87080;
+  --nyamp-fg-faint: #f0ccd4;
+  --nyamp-fg-dim: #5a2030;
+  --nyamp-fg-hint: #b88090;
+
+  --nyamp-border: #e8b0c0;            /* more visible, cards have clear edges */
+  --nyamp-border-subtle: #f0c8d4;
+  --nyamp-divider: #e8b8c8;
+
+  --nyamp-surface-hover: #fff0f3;
+  --nyamp-surface-active: #fbd8e4;    /* noticeably different from hover */
+  --nyamp-surface-placeholder: #f5ccd8;
+  --nyamp-surface-elevated: #fffafc;  /* distinct from page-from */
+  --nyamp-surface-chip: #fffafc99;
+  --nyamp-surface-input: #f5ccd8;     /* clearly darker than elevated */
+
+  --nyamp-accent: #c0395a;
+  --nyamp-on-accent: #fff5f7;
+  --nyamp-progress-track: #f5ccd8;
+  --nyamp-progress-fill: #d45a78;
+  --nyamp-progress-fill-strong: #c0395a;
+
+  --nyamp-nav-active: #7a1830;
+  --nyamp-nav-inactive: #b07888;      /* darker so inactive items don't vanish */
+
+  --nyamp-row-inset-highlight: #ffffffb0;
+  --nyamp-sidebar-fade: #fff5f780;
+
+  --nyamp-scrollbar: #c039581a;
+  --nyamp-scrollbar-hover: #c039582e;
+
+  --nyamp-error-bg: #fef2f2;
+  --nyamp-error-border: #fecaca;
+  --nyamp-error-fg: #b91c1c;
+  --nyamp-warning-bg: #fffbeb;
+  --nyamp-warning-border: #fde68a;
+  --nyamp-warning-fg: #92400e;
+  --nyamp-info-bg: #fff5f7;
+  --nyamp-info-border: #e8b0c0;
+  --nyamp-info-fg: #a87080;
+}
+
+[data-theme="tangerine"] {
+  --nyamp-page-from: #fff8f0;
+  --nyamp-page-to: #fdecd8;
+
+  --nyamp-glass-sidebar: #f8d8a880;   /* deeper amber tint */
+  --nyamp-glass-player: #f8d8a840;
+
+  --nyamp-fg: #2a1200;
+  --nyamp-fg-secondary: #a06030;
+  --nyamp-fg-muted: #c89060;
+  --nyamp-fg-subtle: #b07040;
+  --nyamp-fg-faint: #f0d8b8;
+  --nyamp-fg-dim: #4a2008;
+  --nyamp-fg-hint: #b88050;
+
+  --nyamp-border: #e8c090;            /* much more visible warm border */
+  --nyamp-border-subtle: #f0d0a8;
+  --nyamp-divider: #e8c898;
+
+  --nyamp-surface-hover: #fff3e8;
+  --nyamp-surface-active: #fad8b0;    /* noticeably different from hover */
+  --nyamp-surface-placeholder: #f0cfa0;
+  --nyamp-surface-elevated: #fffdf8;  /* distinct from page */
+  --nyamp-surface-chip: #fffdf899;
+  --nyamp-surface-input: #f0cfa0;     /* clearly darker than elevated */
+
+  --nyamp-accent: #d44800;
+  --nyamp-on-accent: #fff8f0;
+  --nyamp-progress-track: #f0cfa0;
+  --nyamp-progress-fill: #e06020;
+  --nyamp-progress-fill-strong: #d44800;
+
+  --nyamp-nav-active: #6a2000;
+  --nyamp-nav-inactive: #a87848;      /* darker so inactive items don't vanish */
+
+  --nyamp-row-inset-highlight: #ffffffb0;
+  --nyamp-sidebar-fade: #fff8f080;
+
+  --nyamp-scrollbar: #d448001a;
+  --nyamp-scrollbar-hover: #d448002e;
+
+  --nyamp-error-bg: #fef2f2;
+  --nyamp-error-border: #fecaca;
+  --nyamp-error-fg: #b91c1c;
+  --nyamp-warning-bg: #fffbeb;
+  --nyamp-warning-border: #fde68a;
+  --nyamp-warning-fg: #92400e;
+  --nyamp-info-bg: #fff8f0;
+  --nyamp-info-border: #e8c090;
+  --nyamp-info-fg: #b07040;
+}
+
+[data-theme="ocean"] {
+  --nyamp-page-from: #eef5ff;
+  --nyamp-page-to: #dceefa;
+
+  --nyamp-glass-sidebar: #cce0f580;   /* more tinted, stands out from page */
+  --nyamp-glass-player: #cce0f540;
+
+  --nyamp-fg: #0a1628;
+  --nyamp-fg-secondary: #4a7098;
+  --nyamp-fg-muted: #80a8c8;
+  --nyamp-fg-subtle: #5a88a8;
+  --nyamp-fg-faint: #c8dff0;
+  --nyamp-fg-dim: #1e3a58;
+  --nyamp-fg-hint: #6890b0;
+
+  --nyamp-border: #a8ccec;            /* darker, more visible border */
+  --nyamp-border-subtle: #b8d8f5;
+  --nyamp-divider: #a0c8e8;
+
+  --nyamp-surface-hover: #e0eefa;
+  --nyamp-surface-active: #cce0f0;
+  --nyamp-surface-placeholder: #b8d4ec;
+  --nyamp-surface-elevated: #f5faff;  /* slightly off-white, not same as page */
+  --nyamp-surface-chip: #f5faff99;
+  --nyamp-surface-input: #d0e6f8;     /* noticeably different from elevated */
+
+  --nyamp-accent: #0055bb;
+  --nyamp-on-accent: #f0f6ff;
+  --nyamp-progress-track: #c8dff0;
+  --nyamp-progress-fill: #2278d8;
+  --nyamp-progress-fill-strong: #0055bb;
+
+  --nyamp-nav-active: #002a5c;
+  --nyamp-nav-inactive: #6898b8;
+
+  --nyamp-row-inset-highlight: #ffffffb0;
+  --nyamp-sidebar-fade: #eef5ff80;
+
+  --nyamp-scrollbar: #0055bb1a;
+  --nyamp-scrollbar-hover: #0055bb2e;
+
+  --nyamp-error-bg: #fef2f2;
+  --nyamp-error-border: #fecaca;
+  --nyamp-error-fg: #b91c1c;
+  --nyamp-warning-bg: #fffbeb;
+  --nyamp-warning-border: #fde68a;
+  --nyamp-warning-fg: #92400e;
+  --nyamp-info-bg: #eef5ff;
+  --nyamp-info-border: #a8ccec;
+  --nyamp-info-fg: #5a88a8;
+}
+
+[data-theme="ocean-dark"] {
+  --nyamp-page-from: #0a1220;
+  --nyamp-page-to: #101a2e;
+
+  --nyamp-glass-sidebar: #1a304880;   /* lifted teal-navy tint, reads as layer */
+  --nyamp-glass-player: #1a304840;
+
+  --nyamp-fg: #e8f4ff;
+  --nyamp-fg-secondary: #6898b8;
+  --nyamp-fg-muted: #3d6888;
+  --nyamp-fg-subtle: #8ab8d8;
+  --nyamp-fg-faint: #1e3450;
+  --nyamp-fg-dim: #c0dff5;
+  --nyamp-fg-hint: #78a8c8;
+
+  --nyamp-border: #1e3858;            /* visible but not harsh */
+  --nyamp-border-subtle: #182e48;
+  --nyamp-divider: #203a5a;
+
+  --nyamp-surface-hover: #112030;
+  --nyamp-surface-active: #1a3050;    /* clearly different from hover */
+  --nyamp-surface-placeholder: #1e3858;
+  --nyamp-surface-elevated: #152840;  /* lifted above page, distinct layer */
+  --nyamp-surface-chip: #15284099;
+  --nyamp-surface-input: #1a3050;     /* darker than elevated, inputs visible */
+
+  --nyamp-accent: #38a8f8;
+  --nyamp-on-accent: #0a1220;
+  --nyamp-progress-track: #1a3050;
+  --nyamp-progress-fill: #2888d8;
+  --nyamp-progress-fill-strong: #38a8f8;
+
+  --nyamp-nav-active: #c8e8ff;
+  --nyamp-nav-inactive: #4a7898;      /* lifted so inactive items don't disappear */
+
+  --nyamp-row-inset-highlight: #ffffff20;
+  --nyamp-sidebar-fade: #0a122080;
+
+  --nyamp-scrollbar: #38a8f81a;
+  --nyamp-scrollbar-hover: #38a8f82e;
+
+  --nyamp-error-bg: #2a0e0e;
+  --nyamp-error-border: #5a1818;
+  --nyamp-error-fg: #fca5a5;
+  --nyamp-warning-bg: #281a04;
+  --nyamp-warning-border: #5a3808;
+  --nyamp-warning-fg: #fcd34d;
+  --nyamp-info-bg: #101a2e;
+  --nyamp-info-border: #1e3858;
+  --nyamp-info-fg: #78a8c8;
+}
