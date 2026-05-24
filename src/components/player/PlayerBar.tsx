@@ -40,13 +40,13 @@ function ToggleBtn({
       <button
         onClick={onClick}
         className={`transition-colors ${
-          active ? "text-black" : "text-black/30 hover:text-black/60"
+          active ? "text-fg" : "text-fg-muted hover:text-progress-fill-strong"
         }`}
       >
         {children}
       </button>
       <div
-        className={`absolute -bottom-2.5 h-1 w-1 rounded-full bg-black transition-opacity ${
+        className={`absolute -bottom-2.5 h-1 w-1 rounded-full bg-accent transition-opacity ${
           active ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -78,7 +78,7 @@ export function PlayerBar({
 
   return (
     <div className="glass-player shrink-0">
-      <div className="progress-wrap relative mx-auto h-[3px] w-[98%] cursor-pointer rounded-2xl bg-black/6">
+      <div className="progress-wrap relative mx-auto h-[3px] w-[98%] cursor-pointer rounded-2xl bg-progress-track">
         <input
           type="range"
           min={0}
@@ -93,11 +93,11 @@ export function PlayerBar({
           className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-default"
         />
         <div
-          className="h-full rounded-full bg-black/60"
+          className="h-full rounded-full bg-progress-fill"
           style={{ width: `${progress}%` }}
         />
         <div
-          className="progress-thumb pointer-events-none absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-black/10 bg-white opacity-0 shadow-sm transition-opacity"
+          className="progress-thumb pointer-events-none absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-border bg-surface-elevated opacity-0 shadow-sm transition-opacity"
           style={{ left: `${progress}%` }}
         />
       </div>
@@ -115,21 +115,21 @@ export function PlayerBar({
           <button
             onClick={onSkipBack}
             disabled={!track}
-            className="text-black/50 transition-colors hover:text-black disabled:opacity-30"
+            className="text-fg-subtle transition-colors hover:text-fg disabled:opacity-30"
           >
             <SkipBack size={19} strokeWidth={2} />
           </button>
           <button
             onClick={onTogglePlay}
             disabled={!track}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-transform hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-elevated shadow-md transition-transform hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
           >
             {isPlaying ? (
-              <Pause size={17} className="text-black" strokeWidth={2.5} />
+              <Pause size={17} className="text-fg" strokeWidth={2.5} />
             ) : (
               <Play
                 size={17}
-                className="translate-x-[1px] text-black"
+                className="translate-x-px text-fg"
                 strokeWidth={2.5}
               />
             )}
@@ -137,7 +137,7 @@ export function PlayerBar({
           <button
             onClick={onSkipForward}
             disabled={!track}
-            className="text-black/50 transition-colors hover:text-black disabled:opacity-30"
+            className="text-fg-subtle transition-colors hover:text-fg disabled:opacity-30"
           >
             <SkipForward size={19} strokeWidth={2} />
           </button>
@@ -150,17 +150,17 @@ export function PlayerBar({
         </div>
 
         <div className="flex w-[260px] shrink-0 items-center justify-end gap-3">
-          <span className="tabular-nums text-[11px] text-black/30">
+          <span className="tabular-nums text-[11px] text-fg-muted">
             {formatSeconds(currentTime)}
           </span>
-          <span className="text-[11px] text-black/20">/</span>
-          <span className="tabular-nums text-[11px] text-black/30">
+          <span className="text-[11px] text-fg-faint">/</span>
+          <span className="tabular-nums text-[11px] text-fg-muted">
             {totalDuration > 0
               ? formatSeconds(totalDuration)
               : (track?.duration ?? "0:00")}
           </span>
-          <div className="mx-1 h-3 w-px bg-black/10" />
-          <Volume2 size={14} className="shrink-0 text-black/35" />
+          <div className="mx-1 h-3 w-px bg-border" />
+          <Volume2 size={14} className="shrink-0 text-fg-hint" />
           <div className="relative flex h-4 w-20 items-center">
             <input
               type="range"
@@ -170,9 +170,9 @@ export function PlayerBar({
               onChange={(event) => onVolumeChange(Number(event.target.value))}
               className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
             />
-            <div className="h-[3px] w-full overflow-hidden rounded-full bg-black/10">
+            <div className="h-[3px] w-full overflow-hidden rounded-full bg-border">
               <div
-                className="h-full rounded-full bg-black/50"
+                className="h-full rounded-full bg-progress-fill-strong"
                 style={{ width: `${volume}%` }}
               />
             </div>

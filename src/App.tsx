@@ -106,29 +106,17 @@ function App() {
           setCurrentPage={setCurrentPage}
         />
 
-        <div
-          className="w-px shrink-0"
-          style={{
-            background:
-              "linear-gradient(to bottom, transparent, rgba(0,0,0,0.07) 20%, rgba(0,0,0,0.07) 80%, transparent)",
-          }}
-        />
+        <div className="w-px shrink-0 nyamp-divider-v" />
 
         <main className="flex min-h-0 min-w-0 flex-1 flex-col">
           <TopBar />
 
-          <div
-            className="mx-6 h-px shrink-0"
-            style={{
-              background:
-                "linear-gradient(to right, transparent, rgba(0,0,0,0.06) 20%, rgba(0,0,0,0.06) 80%, transparent)",
-            }}
-          />
+          <div className="mx-6 h-px shrink-0 nyamp-divider-h" />
 
           {!isTauriApp && (
-            <div className="mx-8 mt-4 rounded-xl border border-black/8 bg-black/[0.03] px-4 py-3 text-sm text-black/50">
+            <div className="mx-8 mt-4 rounded-xl border border-border-subtle bg-info-bg px-4 py-3 text-sm text-info-fg">
               Run with{" "}
-              <code className="rounded bg-black/5 px-1.5 py-0.5 text-xs">
+              <code className="rounded bg-surface-active px-1.5 py-0.5 text-xs">
                 pnpm tauri dev
               </code>{" "}
               to scan your music library.
@@ -136,13 +124,13 @@ function App() {
           )}
 
           {error && (
-            <div className="mx-8 mt-4 rounded-xl border border-red-200/60 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <div className="mx-8 mt-4 rounded-xl border border-error-border bg-error-bg px-4 py-3 text-sm text-error-fg">
               {error}
             </div>
           )}
 
           {scanFailures.length > 0 && (
-            <div className="mx-8 mt-4 rounded-xl border border-amber-200/60 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+            <div className="mx-8 mt-4 rounded-xl border border-warning-border bg-warning-bg px-4 py-3 text-sm text-warning-fg">
               {scanFailures.map((failure) => (
                 <p key={failure.path}>
                   {failure.path}: {failure.error}
@@ -163,13 +151,7 @@ function App() {
         </main>
       </div>
 
-      <div
-        className="h-px shrink-0"
-        style={{
-          background:
-            "linear-gradient(to right, transparent, rgba(0,0,0,0.08) 15%, rgba(0,0,0,0.08) 85%, transparent)",
-        }}
-      />
+      <div className="h-px shrink-0 nyamp-divider-player" />
 
       <PlayerBar
         track={currentTrack}

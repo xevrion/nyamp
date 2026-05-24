@@ -1,10 +1,11 @@
 import {
   useCallback,
+  useEffect,
   useRef,
   useState,
   type MouseEvent as ReactMouseEvent,
 } from "react";
-import { ChevronUp } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
 import { formatAddedAt } from "../../lib/formatAddedAt";
 import type { Playlist, Track } from "../../types/music";
 
@@ -16,9 +17,9 @@ interface PlaylistViewProps {
   onAddMusicFolder?: () => void;
 }
 
-const FADE = "linear-gradient(to right, black calc(100% - 2rem), transparent 100%)";
 const MIN_COL = 80;
 const RESERVED = 144;
+const PAGE_SIZE = 10;
 
 export function PlaylistView({
   playlist,
@@ -28,6 +29,7 @@ export function PlaylistView({
   onAddMusicFolder,
 }: PlaylistViewProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
   const [cols, setCols] = useState({
     title: 260,
     artist: 160,
@@ -80,10 +82,28 @@ export function PlaylistView({
 
   const gridTemplate = `${cols.title}px ${cols.artist}px ${cols.album}px ${cols.added}px 1fr`;
 
+  const trackCount = playlist.tracks.length;
+  const totalPages = Math.max(1, Math.ceil(trackCount / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+
+  useEffect(() => {
+    setPage(1);
+  }, [playlist.id, trackCount]);
+
+  useEffect(() => {
+    if (page > totalPages) {
+      setPage(totalPages);
+    }
+  }, [page, totalPages]);
+
+  const pageStart = (currentPage - 1) * PAGE_SIZE;
+  const paginatedTracks = playlist.tracks.slice(pageStart, pageStart + PAGE_SIZE);
+  const showPagination = !loading && trackCount > PAGE_SIZE;
+
   return (
     <div className="flex-1 overflow-y-auto pb-8">
       <div className="flex items-end gap-8 px-8 pt-4 pb-10">
-        <div className="h-[180px] w-[180px] shrink-0 overflow-hidden rounded-2xl bg-black/8 shadow-2xl">
+        <div className="h-[180px] w-[180px] shrink-0 overflow-hidden rounded-2xl bg-surface-placeholder shadow-2xl">
           {playlist.coverUrl && (
             <img
               src={playlist.coverUrl}
@@ -93,10 +113,10 @@ export function PlaylistView({
           )}
         </div>
         <div className="flex flex-col justify-end pb-1">
-          <h1 className="mb-2 text-5xl leading-none font-bold tracking-tight text-black">
+          <h1 className="mb-2 text-5xl leading-none font-bold tracking-tight text-fg">
             {playlist.name}
           </h1>
-          <p className="text-sm font-medium text-black/40">
+          <p className="text-sm font-medium text-fg-secondary">
             {playlist.collaborators.length > 0
               ? playlist.collaborators.join(", ")
               : `${playlist.tracks.length} tracks`}
@@ -106,7 +126,7 @@ export function PlaylistView({
 
       <div ref={containerRef} className="px-8">
         <div
-          className="select-none px-3 pb-3 text-[10px] font-bold uppercase tracking-widest text-black/30"
+          className="select-none px-3 pb-3 text-[10px] font-bold uppercase tracking-widest text-fg-muted"
           style={{ display: "grid", gridTemplateColumns: gridTemplate }}
         >
           <div>Title</div>
@@ -115,7 +135,7 @@ export function PlaylistView({
               className="absolute top-0 -left-1.5 flex h-full w-3 cursor-col-resize items-center justify-center opacity-0 hover:opacity-100"
               onMouseDown={(event) => onMouseDown("title", event)}
             >
-              <span className="h-3 w-px rounded-full bg-black/20" />
+              <span className="h-3 w-px rounded-full bg-fg-faint" />
             </span>
             Artist
           </div>
@@ -124,7 +144,7 @@ export function PlaylistView({
               className="absolute top-0 -left-1.5 flex h-full w-3 cursor-col-resize items-center justify-center opacity-0 hover:opacity-100"
               onMouseDown={(event) => onMouseDown("artist", event)}
             >
-              <span className="h-3 w-px rounded-full bg-black/20" />
+              <span className="h-3 w-px rounded-full bg-fg-faint" />
             </span>
             Album
           </div>
@@ -133,35 +153,29 @@ export function PlaylistView({
               className="absolute top-0 -left-1.5 flex h-full w-3 cursor-col-resize items-center justify-center opacity-0 hover:opacity-100"
               onMouseDown={(event) => onMouseDown("album", event)}
             >
-              <span className="h-3 w-px rounded-full bg-black/20" />
+              <span className="h-3 w-px rounded-full bg-fg-faint" />
             </span>
             Added <ChevronUp size={10} />
           </div>
           <div className="text-right">Duration</div>
         </div>
 
-        <div
-          className="mb-1 h-px"
-          style={{
-            background:
-              "linear-gradient(to right, transparent, rgba(0,0,0,0.07) 20%, rgba(0,0,0,0.07) 80%, transparent)",
-          }}
-        />
+        <div className="mb-1 h-px nyamp-divider-h" />
 
         <div className="mt-1 space-y-0.5">
           {loading && playlist.tracks.length === 0 && (
-            <p className="px-3 py-8 text-sm text-black/35">Scanning library…</p>
+            <p className="px-3 py-8 text-sm text-fg-hint">Scanning library…</p>
           )}
 
           {!loading && playlist.tracks.length === 0 && (
             <div className="flex flex-col items-start gap-4 px-3 py-12">
-              <p className="text-sm text-black/40">
+              <p className="text-sm text-fg-secondary">
                 No tracks yet. Add a music folder to get started.
               </p>
               {onAddMusicFolder && (
                 <button
                   onClick={onAddMusicFolder}
-                  className="rounded-full bg-black px-5 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-85"
+                  className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-on-accent transition-opacity hover:opacity-85"
                 >
                   Add music folder
                 </button>
@@ -169,7 +183,7 @@ export function PlaylistView({
             </div>
           )}
 
-          {playlist.tracks.map((track) => {
+          {paginatedTracks.map((track) => {
             const isActive = track.id === currentTrackId;
             const isHovered = track.id === hoveredId;
 
@@ -181,41 +195,66 @@ export function PlaylistView({
                 onClick={() => onTrackSelect(track)}
                 className={`cursor-pointer select-none rounded-xl px-3 py-3 text-sm transition-colors ${
                   isActive
-                    ? "bg-black/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]"
+                    ? "nyamp-row-active"
                     : isHovered
-                      ? "bg-black/[0.03]"
+                      ? "bg-surface-hover"
                       : ""
                 }`}
                 style={{ display: "grid", gridTemplateColumns: gridTemplate }}
               >
                 <div
-                  className={`overflow-hidden font-medium ${
-                    isActive ? "text-black" : "text-black/70"
+                  className={`nyamp-text-fade overflow-hidden font-medium ${
+                    isActive ? "text-fg" : "text-fg-dim"
                   }`}
-                  style={{ WebkitMaskImage: FADE, maskImage: FADE }}
                 >
                   <span className="block whitespace-nowrap">{track.title}</span>
                 </div>
-                <div
-                  className="overflow-hidden text-black/40"
-                  style={{ WebkitMaskImage: FADE, maskImage: FADE }}
-                >
+                <div className="nyamp-text-fade overflow-hidden text-fg-secondary">
                   <span className="block whitespace-nowrap">{track.artist}</span>
                 </div>
-                <div
-                  className="overflow-hidden text-black/40"
-                  style={{ WebkitMaskImage: FADE, maskImage: FADE }}
-                >
+                <div className="nyamp-text-fade overflow-hidden text-fg-secondary">
                   <span className="block whitespace-nowrap">{track.album}</span>
                 </div>
-                <div className="truncate text-black/35">
+                <div className="truncate text-fg-hint">
                   {formatAddedAt(track.addedAt)}
                 </div>
-                <div className="text-right text-black/35">{track.duration}</div>
+                <div className="text-right text-fg-hint">{track.duration}</div>
               </div>
             );
           })}
         </div>
+
+        {showPagination && (
+          <div className="mt-6 flex items-center justify-between px-3">
+            <p className="text-sm text-fg-secondary">
+              {pageStart + 1}–{Math.min(pageStart + PAGE_SIZE, trackCount)} of{" "}
+              {trackCount}
+            </p>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage <= 1}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-fg-subtle transition-colors hover:bg-surface-hover disabled:cursor-not-allowed disabled:opacity-30"
+                aria-label="Previous page"
+              >
+                <ChevronLeft size={16} />
+              </button>
+              <span className="min-w-[4.5rem] text-center text-sm font-medium text-fg">
+                {currentPage} / {totalPages}
+              </span>
+              <button
+                type="button"
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage >= totalPages}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-fg-subtle transition-colors hover:bg-surface-hover disabled:cursor-not-allowed disabled:opacity-30"
+                aria-label="Next page"
+              >
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
