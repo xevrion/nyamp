@@ -14,12 +14,10 @@ import type { Track } from "../../types/music";
 interface PlayerBarProps {
   track: Track | null;
   isPlaying: boolean;
-  isLiked: boolean;
   currentTime: number;
   duration: number;
   volume: number;
   onTogglePlay: () => void;
-  onToggleLike: () => void;
   onSeek: (progress: number) => void;
   onSeekStart: () => void;
   onSeekEnd: () => void;
